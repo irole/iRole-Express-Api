@@ -1,0 +1,6 @@
+{
+  "DatabaseUrl": "mongodb://localhost:27017/iRole-Express-Api-dev",
+  "Debug": true,
+  "ApplicationPort": 3001,
+  "WebsiteUrl": "http://localhost:"
+}

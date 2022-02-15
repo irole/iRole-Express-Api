@@ -1,0 +1,143 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My User Project CRUD",
+    "description": "My User Project Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "192.168.1.22:3001",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": ""
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register user",
+        "parameters": [
+          {
+            "name": "email password",
+            "in": "body",
+            "description": "this values get email and password",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register user",
+        "parameters": [
+          {
+            "name": "email password",
+            "in": "body",
+            "description": "this values get email and password",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "user": {
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "isGuest": {
+          "type": "boolean",
+          "default": false
+        },
+        "admin": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "resetPassword": {
+      "required": [
+        "email",
+        "token"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string",
+          "example": "asdadoa24er##!eqq3wqr31"
+        },
+        "use": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  }
+}
