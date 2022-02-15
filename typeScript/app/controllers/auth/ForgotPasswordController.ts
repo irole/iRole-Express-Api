@@ -8,6 +8,7 @@ import Controller from "./Controller";
 // Services
 import userService from "../../services/UserService";
 import resetPasswordService from "../../services/ResetPasswordService";
+import translate from "../../helpers/translate";
 
 class ForgotPasswordController extends Controller {
 
@@ -18,7 +19,7 @@ class ForgotPasswordController extends Controller {
             // Select User Where Email
             const user = await userService.findOne({email});
             // check user find
-            if (!user) throw new NotFoundError("this email not found")
+            if (!user) throw new NotFoundError(translate(req,__filename,'process-not-found','this email not found'))
             const obj = {
                 email,
                 token: uniqueString(),
@@ -28,7 +29,7 @@ class ForgotPasswordController extends Controller {
             // Send Email
             //anything
             //
-            return this.success('Success', res);
+            return this.success(translate(req,__filename,'process-success','Success'), res);
         } catch (e: any) {
             next(e);
         }

@@ -5,6 +5,7 @@ import {ClientError} from '../../errors/ClientError';
 const passport = require('passport');
 // Controllers
 import Controller from "./Controller";
+import translate from "../../helpers/translate";
 
 class LoginController extends Controller {
 
@@ -12,9 +13,9 @@ class LoginController extends Controller {
         try {
             passport.authenticate('local.login', {session: false}, (err, user) => {
                 // When res have Error
-                if (err && err.code === 401) throw new ClientError('username or password is wrong!', 401)
+                if (err && err.code === 401) throw new ClientError(translate(req,__filename,'process-inf-wrong','username or password is wrong!'), 401)
                 // Login
-                this.login(req, res, user, 'login Success!');
+                this.login(req, res, user, translate(req,__filename,'process-login-success','login Success!'));
             })(req, res);
 
         } catch (e: any) {

@@ -1,4 +1,3 @@
-import {Request, Response, NextFunction} from 'express';
 import {RequestValidationError} from '../errors/RequestValidationError';
 import {validationResult} from 'express-validator';
 

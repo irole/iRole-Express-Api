@@ -1,0 +1,21 @@
+{
+	"app": {
+		"middlewares": {
+			"AuthenticateApi": {
+				"private-access-denied": "You Must be Registered / Logged in to Access this action"
+			}
+		},
+		"validators": {
+			"api": {
+				"public": {
+					"auth": {
+						"RegisterValidator": {
+							"email-validate": "email not valid",
+							"password-valid": "password must more than 8 characters"
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -8,6 +8,7 @@ const passport = require('passport');
 
 // Middlewares
 import Middleware from "./Middleware";
+import translate from "../helpers/translate";
 
 class AuthenticateApi extends Middleware implements AuthenticateApiInterface {
 
@@ -25,7 +26,7 @@ class AuthenticateApi extends Middleware implements AuthenticateApiInterface {
         // Passport JWT Strategy
         passport.authenticate('jwt', {session: false}, (err, user, info): void => {
             if (info && info.message && !user) {
-                throw new ClientError('You Must be Registered / Logged in to Access this action', 401);
+                throw new ClientError(translate(req,__filename,'private-access-denied','You Must be Registered / Logged in to Access this action'), 401);
             }
             // Check Error or User
 

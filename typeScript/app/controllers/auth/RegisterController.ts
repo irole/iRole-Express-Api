@@ -8,6 +8,7 @@ import userService from "../../services/UserService";
 // Errors
 import {ConflictError} from '../../errors/ConflictError';
 import {ServerError} from '../../errors/ServerError';
+import translate from "../../helpers/translate";
 
 
 class RegisterController extends Controller {
@@ -16,13 +17,12 @@ class RegisterController extends Controller {
         try {
             // Check User Exist
             const result = await userService.checkUserExistWithEmail(req.body.email);
-            //if (result) return this.failed('this email is registered before!', res, Option['httpStatus'].s409);
-            if (result) throw new ConflictError('this email is registered before!');
+            if (result) throw new ConflictError(translate(req,__filename,'process-conflict-email','this email is registered before!'));
             passport.authenticate('local.register', {session: false}, (err, user) => {
                 // When res have Error
-                if (err) throw new ServerError('server have Error !');
+                if (err) throw new ServerError(translate(req,__filename,'process-server-error','server have Error !'));
                 // Login
-                this.login(req, res, user, 'register Success!', 201);
+                this.login(req, res, user, translate(req,__filename,'process-register-success','Register Success!'), 201);
             })(req, res, next);
         } catch (e: any) {
             next(e);

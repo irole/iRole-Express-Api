@@ -7,12 +7,13 @@ import Controller from "./Controller";
 // Services
 import userService from "../../services/UserService";
 import resetPasswordService from "../../services/ResetPasswordService";
+import translate from "../../helpers/translate";
 
 class ResetPasswordController extends Controller {
     async index(req, res) {
         const resetPassword = await this.checkToken(req.params.token);
-        if (resetPassword === 404) throw new NotFoundError("invalid-link");
-        if (resetPassword === 409) throw new ConflictError('invalid-link');
+        if (resetPassword === 404) throw new NotFoundError(translate(req,__filename,'index-invalid-link-404','Invalid Link'));
+        if (resetPassword === 409) throw new ConflictError(translate(req,__filename,'index-invalid-link-409','Invalid Link'));
         // Do Something
         return this.success('valid-link', res);
     }
@@ -21,8 +22,8 @@ class ResetPasswordController extends Controller {
         try {
             const {token} = req.params;
             const resetPassword = await this.checkToken(token);
-            if (resetPassword === 404) throw new NotFoundError("invalid-link");
-            if (resetPassword === 409) throw new ConflictError('invalid-link');
+            if (resetPassword === 404) throw new NotFoundError(translate(req,__filename,'process-invalid-link-404','Invalid Link'));
+            if (resetPassword === 409) throw new ConflictError(translate(req,__filename,'process-invalid-link-409','Invalid Link'));
 
             // Get Input Value
             const newPassword = req.body.password;
@@ -35,7 +36,8 @@ class ResetPasswordController extends Controller {
             // Find & Update Reset Password and Set use true
             const tokenUsed = await resetPasswordService.tokenUsed(token);
             if (!tokenUsed) throw new ServerError("server have Error");
-            return this.success('password changed', res);
+            if (!tokenUsed) throw new ServerError(translate(req,__filename,'process-server-error','server have Error'));
+            return this.success(translate(req,__filename,'process-password-changed','Password Changed'), res);
         } catch (e: any) {
             next(e);
         }

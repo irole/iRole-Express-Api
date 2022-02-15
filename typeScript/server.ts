@@ -46,14 +46,15 @@ export class Server {
         app.use(passport.session());
 
         // Translate Config
-        // i18n.configure({
-        //     locales: ['en', 'fr'],
-        //     directory: Option["layout"].locales_directory,
-        //     defaultLocale: 'en',
-        //     cookie: 'lang',
-        //     objectNotation: true
-        // })
-        // app.use(i18n.init);
+        i18n.configure({
+            locales: ['en'],
+            directory: Option['layout'].locales_directory,
+            defaultLocale: 'en',
+            cookie: 'lang',
+            objectNotation: true,
+            updateFiles: true,
+        });
+        app.use(i18n.init);
     }
 
     setRoutes() {
