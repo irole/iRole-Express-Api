@@ -11,9 +11,21 @@
 					"auth": {
 						"RegisterValidator": {
 							"email-validate": "email not valid",
-							"password-valid": "password must more than 8 characters"
+							"password-valid": "password must more than 8 characters",
+							"email-exist": "this email registered before"
 						}
 					}
+				}
+			}
+		},
+		"controllers": {
+			"auth": {
+				"RegisterController": {
+					"process-register-success": "Register Success!"
+				},
+				"LoginController": {
+					"process-login-success": "login Success!",
+					"process-inf-wrong": "username or password is wrong!"
 				}
 			}
 		}

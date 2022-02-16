@@ -19,17 +19,18 @@ class ForgotPasswordController extends Controller {
             // Select User Where Email
             const user = await userService.findOne({email});
             // check user find
-            if (!user) throw new NotFoundError(translate(req,__filename,'process-not-found','this email not found'))
-            const obj = {
-                email,
-                token: uniqueString(),
-            };
-            // Build Reset Password token
-            await resetPasswordService.insert(obj);
-            // Send Email
-            //anything
-            //
-            return this.success(translate(req,__filename,'process-success','Success'), res);
+            if (user) {
+                const obj = {
+                    email,
+                    token: uniqueString(),
+                };
+                // Build Reset Password token
+                await resetPasswordService.insert(obj);
+                // Send Email
+                //anything
+                //
+            }
+            return this.success(translate(req, __filename, 'process-success', 'Success'), res);
         } catch (e: any) {
             next(e);
         }

@@ -21,7 +21,6 @@ passport.use('local.register', new localStrategy({
     passwordField: 'password',
     passReqToCallback: true,
 }, async (req, email: string, password: string, done) => {
-
     // Add New User
     const newUser = await userService.registerProcess(email, password);
     if (newUser === 500) return done(true, null);
@@ -36,6 +35,6 @@ passport.use('local.login', new localStrategy({
     // Select User Where email
     const user = await userService.findOne({email});
     // Check user Exist or Incorrect Password
-    if (!user || !user.comparePassword(password)) return done(401, null);
+    if (!user || !user.comparePassword(password)) return done(true, null);
     done(null, user);
 }));

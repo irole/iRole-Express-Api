@@ -13,9 +13,9 @@ class LoginController extends Controller {
         try {
             passport.authenticate('local.login', {session: false}, (err, user) => {
                 // When res have Error
-                if (err && err.code === 401) throw new ClientError(translate(req,__filename,'process-inf-wrong','username or password is wrong!'), 401)
+                if (err) return next(new ClientError(translate(req, __filename, 'process-inf-wrong', 'username or password is wrong!'), 401));
                 // Login
-                this.login(req, res, user, translate(req,__filename,'process-login-success','login Success!'));
+                this.login(req, res, user, translate(req, __filename, 'process-login-success', 'login Success!'));
             })(req, res);
 
         } catch (e: any) {
