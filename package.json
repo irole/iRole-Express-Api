@@ -81,20 +81,5 @@
   "bugs": {
     "url": "https://github.com/irole/iRole-Express-Api/issues"
   },
-  "homepage": "https://github.com/irole/iRole-Express-Api#readme",
-  "_moduleAliases": {
-    "@root": ".",
-    "@option": "build/option",
-    "@typeScript": "build",
-    "@controllers": "build/app/controllers",
-    "@interfaces": "build/app/interfaces",
-    "@middlewares": "build/app/middlewares",
-    "@models": "build/app/models",
-    "@passport": "build/app/passport",
-    "@routes": "build/app/routes",
-    "@services": "build/app/services",
-    "@validators": "build/app/validators",
-    "@helpers": "build/app/helpers",
-    "@errors": "build/app/errors"
-  }
+  "homepage": "https://github.com/irole/iRole-Express-Api#readme"
 }
