@@ -1,5 +1,3 @@
-import express from 'express';
-
 import Service from "./Service";
 // Model
 import ResetPasswordToken from "../models/resetPasswordToken";

@@ -3,7 +3,7 @@ import {CustomError} from '../errors/CustomError';
 import {RequestValidationError} from '../errors/RequestValidationError';
 
 // Logger
-import logger from '../helpers/logger';
+import {logger} from "../helpers/logger";
 import translate from "../helpers/translate";
 
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -17,7 +17,7 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
             });
 
         } else {
-            logger.error(`${err.statusCode || 500} - ${err.data} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+            logger.error(`${err.statusCode || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
             return res.status(err.statusCode).send({
 
                 code: err.statusCode, // code : 500

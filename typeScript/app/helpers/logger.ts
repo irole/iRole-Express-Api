@@ -1,6 +1,6 @@
 const {createLogger, format, transports} = require('winston');
 
-export default createLogger({
+const logger = createLogger({
     transports: [
         new transports.File({
             level: 'error',
@@ -16,7 +16,16 @@ export default createLogger({
             ),
         }),
         new transports.Console({
-            level: 'warn'
-        }),
+            level: 'info',
+            format: format.combine(
+                format.colorize(),
+                format.simple(),
+                format.timestamp({
+                    format: 'MMM-DD-YYYY HH:mm:ss',
+                }),
+                format.printf((info) => `${info.message}`),
+            ),
+        })
     ],
 });
+export {logger};

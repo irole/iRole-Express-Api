@@ -1,4 +1,3 @@
-import express from 'express';
 // Packages
 const passport = require('passport');
 // Controllers

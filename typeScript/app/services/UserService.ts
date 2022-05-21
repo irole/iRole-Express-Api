@@ -1,6 +1,3 @@
-// Packages
-import uniqueString from 'unique-string';
-
 const bcrypt = require('bcrypt');
 // Service
 import Service from "./Service";
@@ -12,19 +9,6 @@ class UserService extends Service {
     constructor() {
         super(User);
     }
-
-    defineUsername() {
-        const string = this.builder();
-        this.findOne({username: string}).then((result) => {
-            if (result) this.defineUsername();
-        });
-        return string;
-    }
-
-    builder() {
-        return uniqueString();
-    }
-
     bcryptPassword(password: any): any {
         // Bcrypt with 15 salt
         const salt = bcrypt.genSaltSync(15);
@@ -41,18 +25,6 @@ class UserService extends Service {
     async findUsernameWithId(userId) {
         const user = await this.findById(userId);
         return user.username;
-    }
-
-    async updateGeneralLevel(userId) {
-        const user = await this.findById(userId);
-        if (!user) return Option['httpStatus'].s400;
-        const {generalXp, neededXP} = user;
-        if (generalXp >= neededXP) {
-            user.generalLevel++;
-            user.neededXP = neededXP * 1.5;
-            await user.save();
-            await this.updateGeneralLevel(userId);
-        }
     }
 
     async registerProcess(email, password) {
