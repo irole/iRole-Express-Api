@@ -3,6 +3,8 @@ services:
   app:
     container_name: api-template
     image: irolegroup/api-express
+    environment:
+      - DatabaseUrl=mongodb://mongo:27017/iRole-Express-Api
     restart: always
     build: .
     ports:

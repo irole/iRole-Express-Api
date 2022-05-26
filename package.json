@@ -12,7 +12,7 @@
     "start-dev-server": "NODE_ENV=development nodemon ./build/app/bin/www",
     "start-pro-server": "NODE_ENV=production node ./build/app/bin/www",
     "start-pm2-pro-server": "NODE_ENV=production pm2 start ./build/app/bin/www.js --name admin",
-    "start-docker": "NODE_ENV=production-docker ts-node-dev --poll typeScript/app/bin/www.ts",
+    "start-docker": "NODE_ENV=production ts-node-dev --poll typeScript/app/bin/www.ts",
     "mocha-ts": "SET NODE_ENV=test&& mocha -r ts-node/register test/hooks.test.ts --require mocha-steps --timeout 1000000000 --exit",
     "mocha-ts-server": "NODE_ENV=test mocha -r ts-node/register test/hooks.test.ts --require mocha-steps --timeout 1000000000 --exit",
     "eslint": "eslint typeScript/**/*.ts"
@@ -44,6 +44,7 @@
     "auto-bind": "^4.0.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "config": "^3.3.6",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.5",

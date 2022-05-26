@@ -7,7 +7,7 @@ const config = require('config');
 
 class Application {
 
-    mangoDbName: any = config.DatabaseUrl;
+    mongoDbName: any;
     port = this.normalizePort(config.ApplicationPort || '3000');
     server;
     debug = require('debug')('iRole-Express-Api:server');
@@ -18,8 +18,9 @@ class Application {
     }
 
     setMongoConnection() {
+        process.env.DatabaseUrl === undefined ? this.mongoDbName = config.DatabaseUrl : this.mongoDbName = process.env.DatabaseUrl
         mongoose.Promise = global.Promise;
-        mongoose.connect(this.mangoDbName, {
+        mongoose.connect(this.mongoDbName, {
             // @ts-ignore
             useNewUrlParser: true,
             useUnifiedTopology: true

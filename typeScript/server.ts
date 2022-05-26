@@ -10,6 +10,7 @@ const config = require('config');
 const passport = require('passport');
 const i18n = require('i18n');
 const logger = require('morgan');
+const compression = require('compression');
 require('dotenv').config();
 import {Router} from './app/routes'
 
@@ -44,7 +45,8 @@ export class Server {
         // Passport Initialize
         app.use(passport.initialize());
         app.use(passport.session());
-
+        // gzip compression
+        app.use(compression());
         // Translate Config
         i18n.configure({
             locales: ['en'],
